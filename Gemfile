@@ -14,4 +14,5 @@ gem "watir-webdriver"
 group :test do
   gem "rspec", "~> 3.2.0"
   gem "rspec-nc"
+  gem "guard-rspec"
 end
