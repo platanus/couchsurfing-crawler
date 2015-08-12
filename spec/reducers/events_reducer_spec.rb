@@ -7,27 +7,36 @@ describe EventsReducer do
   end
 
   it "should parse event title", reducing: 'events', live: true do
-    expect(reducer.events[0].title).to eq('Defqon.1 Chile')
+    expect(reducer.events[1].title).to eq('SPANGLISH PARTY')
   end
 
   it "should parse event url", reducing: 'events', live: true do
-    expect(reducer.events[0].link).to eq('/events/defqon-1-chile')
+    expect(reducer.events[2].link).to eq('https://www.couchsurfing.com/events/ecosonorisacion-pot-luck')
   end
 
   it "should parse event location", reducing: 'events', live: true do
-    expect(reducer.events[0].location).to eq('Santiago, Santiago, Santiago Metropolitan Region, Chile')
+    expect(reducer.events[3].location).to eq({
+      country: "Chile",
+      region: "Región Metropolitana",
+      commune: "Providencia",
+      city: "Santiago",
+      address: "Santa Isabel 664",
+      place: "El Shack"
+    }.to_s)
   end
 
   it "should parse event date", reducing: 'events', live: true do
-    expect(reducer.events[0].date).to eq('Sat, Dec 12 at 11:00 AM CLST')
+    expect(reducer.events[0].date).to eq(DateTime.parse('Sat, Dec 12 at 11:00 AM CLST').to_s)
   end
 
   it "should parse event attendance", reducing: 'events', live: true do
-    expect(reducer.events[0].attendance).to eq('26 attending')
+    expect(reducer.events[4].attendance).to eq(10)
   end
 
   it "should parse event image url", reducing: 'events', live: true do
-    expect(reducer.events[0].image).to eq('https://tcdn.couchsurfing.com/OC_9DmW3pSG-LSiP6emedKxFIBU=/80x80/smart/https://s3.amazonaws.com/ht-images.couchsurfing.com/u/1006424028/33b287ae-6048-49c9-a98e-e4c37a62c396')
+    image_url = "https://tcdn.couchsurfing.com/KrSCtcT5ICt3qPnZUvV4x-c9mbE=/80x80/smart/https://s3.amazonaws.com/images.couchsurfing.com/083/311/000311083/d0bd655670b965d5f96689b65832c105"
+
+    expect(reducer.events[6].image_url).to eq(image_url)
   end
 
 end
